@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+    <h1>Product</h1>
+
+    <table class="table">
+        <tbody>
+       
+            <tr>
+                <th>Product_image</th>
+                <td> <img src="/uploads/images/{{ product.productImage }}" width="180" height="120"></td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ product.id }}</td>
+            </tr>
+            <tr>
+                <th>Product_name</th>
+                <td>{{ product.productName }}</td>
+            </tr>
+            <tr>
+                <th>Brand</th>
+                <td>{{ product.brand }}</td>
+            </tr>
+            <tr>
+                <th>Colour</th>
+                <td>{{ product.colour }}</td>
+            </tr>
+            <tr>
+                <th>Engine</th>
+                <td>{{ product.engine }}</td>
+            </tr>
+            <tr>
+                <th>Fuel_type</th>
+                <td>{{ product.fuelType }}</td>
+            </tr>
+            <tr>
+                <th>Milage</th>
+                <td>{{ product.milage }}</td>
+            </tr>
+            
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ product.updatedAt ? product.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ product.status }}</td>
+            </tr>
+            <tr>
+                <th>Stearing_side</th>
+                <td>{{ product.stearingSide }}</td>
+            </tr>
+            <tr>
+                <th>Capacity</th>
+                <td>{{ product.capacity }}</td>
+            </tr>
+            <tr>
+                <th>TankSize</th>
+                <td>{{ product.tankSize }}</td>
+            </tr>
+            <tr>
+                <th>Stepney</th>
+                <td>{{ product.stepney ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>WheelType</th>
+                <td>{{ product.wheelType }}</td>
+            </tr>
+            <tr>
+                <th>Trunk</th>
+                <td>{{ product.trunk ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>EnginePower</th>
+                <td>{{ product.enginePower }}</td>
+            </tr>
+            <tr>
+                <th>EngineOilCapacity</th>
+                <td>{{ product.engineOilCapacity }}</td>
+            </tr>
+            <tr>
+                <th>CoolingSystemType</th>
+                <td>{{ product.coolingSystemType }}</td>
+            </tr>
+            <tr>
+                <th>CoolantType</th>
+                <td>{{ product.coolantType }}</td>
+            </tr>
+            <tr>
+                <th>AirbagCount</th>
+                <td>{{ product.airbagCount }}</td>
+            </tr>
+            <tr>
+                <th>PowerWindows</th>
+                <td>{{ product.powerWindows ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Sunroof</th>
+                <td>{{ product.sunroof ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('product_index') }}">back to list</a>
+
+    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+
+    {{ include('product/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category{% endblock %}
+
+{% block body %}
+<br>
+    <h1 class="btn btn-info btn-lg btn-block" style="font-size:30px;font-weight:bold;">Category:-{{category.categoryName}}</h1>
+<br>
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ category.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ category.categoryName }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ category.categoryDescription }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ category.createdAt ? category.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ category.updatedAt ? category.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+     <div class="btn-group">
+                    <button class="btn btn-primary" onclick="window.location.href='http://localhost:8000/category';">
+                    <i class="fa fa-chevron-left"></i>Back </button>
+                    <button class="btn btn-primary" onclick="window.location.href='http://localhost:8000/category/{{category.id}}/edit';">
+                    <i class="fa fa-pencil"></i>Edit </button>
+
+                                
+                      {{ include('category/_delete_form.html.twig') }}
+   
+    </div>
+{% endblock %}

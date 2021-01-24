@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+    <br>
+    <h1 class="btn btn-info btn-lg btn-block" style="font-size:30px;font-weight:bold;">Edit User:-{{ user.email }}</h1>
+<div class="" style="float: left">
+    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <button class="btn btn-primary" onclick="window.location.href='http://localhost:8000/user';">
+        <i class="fa fa-chevron-left"></i>Back </button>
+
+    {{ include('user/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

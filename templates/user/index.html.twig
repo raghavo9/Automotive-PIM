@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h1 class="btn btn-primary btn-lg btn-block" style="font-size:30px;font-weight:bold;">Users</h1>
+    <br>
+
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+        <!--    <th>Password</th>           -->
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+    <!--        <td>{{ user.password }}</td>                                        -->
+                <td>
+                    <a href="{{ path('user_show', {'id': user.id}) }}"><i class="fa fa-eye" style="color:red"></i>Show</a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}"><i class="fa fa-pencil" style="color:red"></i>edit</a>
+                    <a href="{{ path('user_delete', {'id': user.id}) }}"><i class="fa fa-trash" style="color:red"></i>Delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">NO RECORD TO DISPLAY</td>
+            </tr>
+            
+            <tr>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+      <button class="btn btn-primary" onclick="window.location.href='http://localhost:8000/user/new';"><i class="fa fa-pencil"></i>Create New </button>
+    <!--<a href="{{ path('user_new') }}">Create new</a>-->
+{% endblock %}

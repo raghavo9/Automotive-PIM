@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+         <link rel="stylesheet" href="{{asset('css/app.css')}}">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        {% endblock %}
+
+        {% block javascripts %}
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        {% endblock %}
+    </head>
+    <body>
+      <!--  <div style="float:left;">
+            <button class="btn btn-primary" onclick="window.location.href='http://localhost:8000/homepage';">Homepage </button>
+        </div>
+        <div style="float:right;">
+            <button class="btn btn-danger" onclick="window.location.href='http://localhost:8000/logout';">logout </button>
+        </div>-->
+
+        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+  <div class="form-inline">
+   <img src="/images/p1.png" width="30" height="30" alt="">&nbsp;&nbsp;
+
+    <button class="btn btn-outline-primary" onclick="window.location.href='http://localhost:8000/homepage';">Homepage </button>
+     </div>
+
+      <div class="form-inline my-2 my-lg-0">
+      <div class="btn-group">
+          <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle" ></i> </button>&nbsp;&nbsp;
+            <div class="dropdown-menu">
+               <div class="card" style="width: 18rem;">
+                                  <div class="card-body">
+                                   <h5 class="card-title" style="font-size:x-small;">CURRENTLY LOGGED IN AS</h5>
+                                 <p class="card-text">{{ curr_user }} </p>
+
+                             <button class="btn btn-outline-danger" onclick="window.location.href='http://localhost:8000/logout';"><i class="fa fa-sign-out"></i>logout </button>
+                 </div>
+            </div>
+          </div>
+         
+
+                                 <input class="form-control mr-sm-2" type="search" placeholder="Search">
+                                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+           </div>
+      </div>
+</nav>
+
+        {% block body %}{% endblock %}
+    </body>
+</html>

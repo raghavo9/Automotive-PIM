@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+<br>
+
+<br>
+
+{% if is_granted('ROLE_ADMIN') %}
+    <div>
+        <button class="btn btn-primary" onclick="window.location.href='http://localhost:8000/category';">My Category </button>
+        
+        <button class="btn btn-primary" onclick="window.location.href='http://localhost:8000/product';">My Product </button>
+        
+        <button class="btn btn-primary" onclick="window.location.href='http://localhost:8000/user';">My User </button>
+        
+        <button class="btn btn-primary" onclick="window.location.href='http://localhost:8000/admin';">Admin Panel </button>
+
+    </div>
+    <hr>
+{% endif %}
+
+{% if is_granted('ROLE_MANAGER') %}
+    <div>
+        <button class="btn btn-primary" onclick="window.location.href='http://localhost:8000/category';">My Category </button>
+        <button class="btn btn-primary" onclick="window.location.href='http://localhost:8000/product';">My Product </button>
+    </div>
+{% endif %}
+
+<br>
+    <h1 class="btn btn-primary btn-lg btn-block" style="font-size:30px;font-weight:bold;">Product index</h1>
+
+    <table class="table table-hover">
+        <thead >
+            <tr class="table-info">
+                <th>Image</th>
+                <th>Name</th>
+                <th>Manufacturer</th>
+                <th>Colour</th>
+                <th>Engine</th>
+                <th>Fuel</th>
+                <th>Milage</th>
+    <!--        <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>Status</th>             -->
+                <th>Stearing_side</th>
+                <th>Capacity</th>
+                <th>TankSize</th>
+                <th>WheelType</th>
+                <th>Trunk</th>
+                <th>EnginePower</th>
+                <th>EngineOilCapacity</th>
+                <th>CoolingSystemType</th>
+                <th>AirbagCount</th>
+                <th>PowerWindows</th>
+                <th>Sunroof</th>
+    <!--        <th>actions</th>            -->
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                
+                <td><img src="/uploads/images/{{ product.productImage }}" width="150" height="110"></td>
+                <td>{{ product.productName }}</td>
+                <td>{{ product.brand }}</td>
+                <td>{{ product.colour }}</td>
+                <td>{{ product.engine }}</td>
+                <td>{{ product.fuelType }}</td>
+                <td>{{ product.milage }}</td>
+   <!--         <td>{{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ product.updatedAt ? product.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ product.status }}</td>               -->
+                <td>{{ product.stearingSide }}</td>
+                <td>{{ product.capacity }}</td>
+                <td>{{ product.tankSize }}</td>
+                <td>{{ product.wheelType }}</td>
+                <td>{{ product.trunk ? 'Yes' : 'No' }}</td>
+                <td>{{ product.enginePower }}</td>
+                <td>{{ product.engineOilCapacity }}</td>
+                <td>{{ product.coolantType }}</td>
+                <td>{{ product.airbagCount }}</td>
+                <td>{{ product.powerWindows ? 'Yes' : 'No' }}</td>
+                <td>{{ product.sunroof ? 'Yes' : 'No' }}</td>
+
+                {% if is_granted('ROLE_ADMIN') %}
+           
+                    <td>
+                         <a href="{{ path('product_show', {'id': product.id}) }}"><i class="fa fa-eye"style="color:red;"></i>&nbsp;Show</a>
+                          <a href="{{ path('product_edit', {'id': product.id}) }}"><i class="fa fa-pencil"style="color:red;"></i>&nbsp;Edit</a>               
+                    </td>
+
+                 {% endif %}   
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="25">NO RECORDS TO DISPLAY!!</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if is_granted('ROLE_ADMIN') %}
+    <button class="btn btn-primary" onclick="window.location.href='http://localhost:8000/product/new';"><i class="fa fa-pencil"></i>Create New </button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        
+                 {% endif %}
+
+    
+    
+{% endblock %}
