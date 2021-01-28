@@ -14,12 +14,27 @@
        
         <button class="btn btn-warning" onclick="window.location.href='http://localhost:8000/product/export';"><i class="fa fa-upload"></i>Export Published Products </button>
 
-        <button class="btn btn-warning" onclick="window.location.href='http://localhost:8000/jsonapi';">Json Response </button>
+        <button class="btn btn-warning" onclick="window.location.href='http://localhost:8000/myapi/show';">Json Response </button>
     {% endif %}
     {% if is_granted('ROLE_MANAGER') %}
         <!-- <a href="{{ path('product_new') }}">Create new</a>  -->
     {% endif %}
 
+<hr>
+{% if is_granted('ROLE_ADMIN') %}
+   
+   <!--
+    categories :
+    
+        {% for cat in all_cat %}
+            <a href ="http:localhost:8000/product/sort/{{ cat.getId }}"> {{ cat.getCategoryName }} </a> 
+        {% endfor %}
+    
+
+    -->
+{% endif %}
+
+{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER') %}
    <hr>
 <br>
     <h1 class="btn btn-primary btn-lg btn-block" style="font-size:30px;font-weight:bold;">Products</h1>
@@ -94,6 +109,8 @@
         {% endfor %}
         </tbody>
     </table>
+
+{% endif %}
 
 {% if is_granted('ROLE_MANAGER') %}
          <hr>
@@ -179,9 +196,9 @@
 
 
 
-
+{% if is_granted('ROLE_ADMIN') %}
  <button class="btn btn-primary" onclick="window.location.href='http://localhost:8000/product/new';"><i class="fa fa-pencil"></i>Create New </button>
-        
+ {% endif %}
     
     
 {% endblock %}

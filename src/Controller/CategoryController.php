@@ -34,7 +34,7 @@ class CategoryController extends AbstractController
             ]);
         }
         return $this->render('category/index.html.twig', [
-            'categories' => $this->getUser()->getCategories(),
+            'categories' => $this->getUser()->getMcat(),
             'curr_user'=> $security->getUser()
             //'products' => $this->getUser()->getProducts(),
         ]);
@@ -51,6 +51,7 @@ class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $category->addCategoryManagedBy($security->getUser());      // added here by raghavo9
             $entityManager->persist($category);
             $entityManager->flush();
 

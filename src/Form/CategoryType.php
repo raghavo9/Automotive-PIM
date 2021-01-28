@@ -20,7 +20,7 @@ class CategoryType extends AbstractType
             ->add('category_description')
             //->add('createdAt')
             //->add('updatedAt')
-            ->add('category_managedBy')
+            //->add('category_managedBy')
             ->add('muser');
             //->add('category_managedBy',EntityType::class,[
             //    'class' => User::class,

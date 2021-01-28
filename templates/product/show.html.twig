@@ -3,6 +3,8 @@
 {% block title %}Product{% endblock %}
 
 {% block body %}
+
+{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER') %}
     <h1>Product</h1>
 
     <table class="table">
@@ -113,4 +115,8 @@
     <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
 
     {{ include('product/_delete_form.html.twig') }}
+
+{% endif %}
+
+
 {% endblock %}

@@ -1,7 +1,9 @@
 {{ form_start(form) }}
 
-{{ form_widget(form) }}
 
+{{ form_row(form.category_name, {'label': 'Category Name'}) }}
+{{ form_row(form.category_description, {'label': 'Category description'}) }}
+{{ form_row(form.muser, {'label': 'Category assigned to'}) }}
 <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
 
 {{ form_end(form) }}

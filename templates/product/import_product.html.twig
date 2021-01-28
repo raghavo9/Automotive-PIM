@@ -4,8 +4,12 @@
 
 {% block body %}
 
+{% if is_granted('ROLE_ADMIN') %}
+
 {{ form_start(form) }}
     {{ form_widget(form) }}
 {{ form_end(form) }}
 
+
+{% endif %}
 {% endblock %}

@@ -17,7 +17,7 @@
         
         <button class="btn btn-primary" onclick="window.location.href='http://localhost:8000/user';">My User </button>
         
-        <button class="btn btn-primary" onclick="window.location.href='http://localhost:8000/admin';">Admin Panel </button>
+    <!--    <button class="btn btn-primary" onclick="window.location.href='http://localhost:8000/admin';">Admin Panel </button>  -->
 
     </div>
     <hr>
@@ -102,11 +102,7 @@
         {% endfor %}
         </tbody>
     </table>
-    {% if is_granted('ROLE_ADMIN') %}
-    <button class="btn btn-primary" onclick="window.location.href='http://localhost:8000/product/new';"><i class="fa fa-pencil"></i>Create New </button>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        
-                 {% endif %}
+   
 
     
     
