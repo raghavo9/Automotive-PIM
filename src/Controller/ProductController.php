@@ -144,6 +144,10 @@ class ProductController extends AbstractController
                 $this->logger->error('Unable to import data correctly.');
             }
         }
+        else
+        {
+            $this->addFlash('error', 'file type not json , cannot IMPORT data');
+        }
         }
         else{
             $this->logger->error('File was not uploaded');
@@ -292,8 +296,9 @@ class ProductController extends AbstractController
     {
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
-
+        $product->setUpdatedAt(new \DateTime());
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('product_index');

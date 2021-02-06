@@ -3,9 +3,13 @@
 namespace App\EventSubscriber;
 
 use App\Entity\Category;
+use App\Entity\Product;
 use App\Entity\User;
 use App\Repository\UserRepository;
+use DateTime;
 use EasyCorp\Bundle\EasyAdminBundle\Event\AfterEntityPersistedEvent;
+use EasyCorp\Bundle\EasyAdminBundle\Event\AfterEntityUpdatedEvent;
+use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
 use Symfony\Bridge\Twig\Mime\NotificationEmail;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
@@ -37,6 +41,7 @@ class Event2SubsSubscriber implements EventSubscriberInterface
         return [
             AfterEntityPersistedEvent::class=>['sendEmail'],
             AfterEntityPersistedEvent::class=>['NoticeIt'],
+            AfterEntityUpdatedEvent::class => ['updateProduct'],
 
 
         ];
@@ -57,6 +62,16 @@ class Event2SubsSubscriber implements EventSubscriberInterface
             );
 
         }
+    }
+    
+    public function updateProduct(BeforeEntityUpdatedEvent $event)
+    {
+        $entity = $event->getEntityInstance();
+        if($entity instanceof Product)
+        {
+            $entity->setUpdatedAt(new DateTime());
+        }
+        return ;
     }
 
     //    //send mail to all authors when new category created

@@ -13,7 +13,7 @@ class ExceptionListener
         // You get the exception object from the received event
         $exception = $event->getThrowable();
         $message = sprintf(
-            "<h2> YOU CAME WRONG WAY </h2> "
+            "<h2> YOU CAME WRONG WAY %s %s </h2> " ,  $exception->getMessage(),$exception->getCode()
            
         );
 

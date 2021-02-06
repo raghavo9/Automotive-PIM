@@ -23,15 +23,15 @@
 <hr>
 {% if is_granted('ROLE_ADMIN') %}
    
-   <!--
+  
     categories :
     
         {% for cat in all_cat %}
-            <a href ="http:localhost:8000/product/sort/{{ cat.getId }}"> {{ cat.getCategoryName }} </a> 
+            <a href ="sort/{{ cat.getId }}"> {{ cat.getCategoryName }} </a> 
         {% endfor %}
     
 
-    -->
+    
 {% endif %}
 
 {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER') %}
