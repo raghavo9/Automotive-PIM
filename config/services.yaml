@@ -43,6 +43,9 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
 
+    App\EventListener\SendSomeMailSubscriber:
+        tags:
+            - { name: 'doctrine.event_subscriber' }
 
 
 

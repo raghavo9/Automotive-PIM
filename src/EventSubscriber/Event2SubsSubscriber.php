@@ -11,11 +11,14 @@ use EasyCorp\Bundle\EasyAdminBundle\Event\AfterEntityPersistedEvent;
 use EasyCorp\Bundle\EasyAdminBundle\Event\AfterEntityUpdatedEvent;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
 use Symfony\Bridge\Twig\Mime\NotificationEmail;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Mime\Email;
+use Doctrine\ORM\Events;
+use Doctrine\Persistence\Event\LifecycleEventArgs;
 
 class Event2SubsSubscriber implements EventSubscriberInterface
 {
@@ -35,10 +38,12 @@ class Event2SubsSubscriber implements EventSubscriberInterface
         $this->adminEmail = $adminEmail;
         $this->UserRepository= $UserRepository;
     }
+    
 
     public static function getSubscribedEvents()
     {
         return [
+            Events::postPersist,
             AfterEntityPersistedEvent::class=>['sendEmail'],
             AfterEntityPersistedEvent::class=>['NoticeIt'],
             AfterEntityUpdatedEvent::class => ['updateProduct'],
@@ -47,6 +52,17 @@ class Event2SubsSubscriber implements EventSubscriberInterface
         ];
     }
 
+    public function postPersist(LifecycleEventArgs $args): void
+    {
+        $email = new TemplatedEmail();
+        $email->from('wanderlust.we.009@gmail.com');
+        $email->to('raghavrastogi09@gmail.com');
+        $email->htmlTemplate('emails/category_notice.html.twig');
+
+        
+        $this->mailer->send($email);
+    }
+    
     public function sendEmail(AfterEntityPersistedEvent $event , MailerInterface $mailer)
     {
         $entity = $event->getEntityInstance();
@@ -143,16 +159,23 @@ class Event2SubsSubscriber implements EventSubscriberInterface
         $entity =  $event->getEntityInstance();
         if($entity instanceof Category)
         {
-            $email = (new Email())
-            ->from('wanderlust.we.009@gmail.com')
-            ->to('raghavrastogi09@gmail.com')
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
-            //->priority(Email::PRIORITY_HIGH)
-            ->subject('Time for Symfony Mailer!')
-            ->text('Sending emails is fun again!')
-            ->html('<p>See Twig integration for better HTML integration!</p>');
+            dump("category is created");
+            //  $email = (new Email())
+            //  ->from('wanderlust.we.009@gmail.com')
+            //  ->to('raghavrastogi09@gmail.com')
+            //  //->cc('cc@example.com')
+            //  //->bcc('bcc@example.com')
+            //  //->replyTo('fabien@example.com')
+            //  //->priority(Email::PRIORITY_HIGH)
+            //  ->subject('Time for Symfony Mailer!')
+            //  ->text('Sending emails is fun again!')
+            //  ->html('<p>See Twig integration for better HTML integration!</p>');
+
+            $email = new TemplatedEmail();
+            $email->from('wanderlust.we.009@gmail.com');
+            $email->to('raghavrastogi09@gmail.com');
+            $email->htmlTemplate('emails/category_notice.html.twig');
+
             
             $this->mailer->send($email);
         }
