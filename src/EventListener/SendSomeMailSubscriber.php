@@ -46,6 +46,7 @@ class SendSomeMailSubscriber implements EventSubscriber
             $email->from('wanderlust.we.009@gmail.com');
             //$email->to('raghavrastogi09@gmail.com');
             $email->to($email_to);
+            $email->subject("Categroy Assignment");
             $email->html($email_content);
             //$email->htmlTemplate('emails/category_notice.html.twig');
 
